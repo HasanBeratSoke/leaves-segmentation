@@ -4,7 +4,7 @@ import numpy as np
 from random import randint  # for random values
 import copy  # for deepcopy on images
 
-IMG_PATH = r"C:\Users\hasan\Desktop\leaves-segmentation\method-2\test4.png"
+IMG_PATH = r"C:\Users\hasan\Desktop\leaves-segmentation\method-2\test2.png"
 img = cv.imread(IMG_PATH)
 cv.imshow("org", img)
 
