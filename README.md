@@ -31,6 +31,6 @@ Master of the artificial intelligence, Senior web devoloper and philosopher.
 
 [Mr.Hasan Berat SÖKE](https://github.com/HasanBeratSoke)
 
-Master of the computer vision 
+Master of the computer vision.
 
 
