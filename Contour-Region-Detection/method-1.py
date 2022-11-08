@@ -6,7 +6,7 @@ from skimage.segmentation import watershed
 from skimage.feature import peak_local_max
 
 
-IMG_PATH = "test2.png"
+IMG_PATH = r'Contour-Region-Detection\test2.png'
 img  = cv.imread(IMG_PATH)
 cv.imshow("1-org", img)
 
@@ -75,13 +75,23 @@ img_copy3 = img.copy()
 contours_C = sorted(contours_C, key=lambda x: cv.contourArea(x),reverse=True)
 contours_B = sorted(contours_B, key=lambda x: cv.contourArea(x),reverse=True)
 
-
+total_leaf_area = 0
+total_leaf_area_cm2 = 0
 for i, j in zip(contours_C, contours_B):
     r = cv.matchShapes(i, j, 1, 0.0)
     print(r)
     if ((r < 850) and (cv.contourArea(i) < 90000 )):
        cv.drawContours(img_copy3, i, -1, (0, 0, 255), 4) 
+       total_leaf_area += cv.contourArea(i)
 
+
+RATIO_PIXEL_TO_CM  = 78
+RATIO_PIXEL_TO_SQURE_CM = 78*78
+
+total_leaf_area_cm2 = round(total_leaf_area / RATIO_PIXEL_TO_SQURE_CM,2)
+cv.putText(img_copy3, "total leaf area : {} cm2 ".format(total_leaf_area_cm2), fontFace= cv.FONT_HERSHEY_SIMPLEX,
+color= (255, 255, 255), thickness= 2, lineType= cv.LINE_AA, bottomLeftOrigin= False, org= (50,50),
+fontScale= 0.8)
 
 cv.imshow("result",img_copy3)
                    

@@ -4,7 +4,7 @@ import numpy as np
 from random import randint  # for random values
 import copy  # for deepcopy on images
 
-IMG_PATH = r"C:\Users\hasan\Desktop\leaves-segmentation\watershed-method\test4.png"
+IMG_PATH = r"C:\Users\hasan\Desktop\leaves-segmentation\watershed-method\test2.png"
 img = cv.imread(IMG_PATH)
 cv.imshow("org", img)
 
@@ -24,7 +24,7 @@ smooth = cv.filter2D(blur, -1, kernel )
 hsv_img = cv.cvtColor(img, cv.COLOR_BGR2HSV)
 
 # hsv filtering
-high_value = (30,110,130)
+high_value = (30,110,125)
 low_value = (179, 255, 255)
 image_threshold = cv.inRange(hsv_img, high_value, low_value )
 cv.imshow("image_threshold-hsv",image_threshold)
@@ -37,7 +37,7 @@ cv.imshow("backgraund", sure_bg)
 
 # Finding sure foreground area
 dist_transform = cv.distanceTransform(opening, cv.DIST_L2, 5)
-_, sure_fg = cv.threshold(dist_transform, 0.25*dist_transform.max(), 255, 0)
+_, sure_fg = cv.threshold(dist_transform, 0.02*dist_transform.max(), 255, 0)
 cv.imshow("foregraund", sure_fg)
 
 sure_fg = np.uint8(sure_fg)
@@ -50,7 +50,9 @@ markers[unknown == 255] = 0
 markers = cv.watershed(img, markers)
 
 img[markers == -1] = [255, 0, 0]
+
 leaf_count = 0
+total_leaf_area = 0
 for i in range(2, markers.max() + 1):
     img[markers == i] = [randint(0, 255), randint(0, 255), randint(0, 255)] 
     leaf_count+=1

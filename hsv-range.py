@@ -25,7 +25,7 @@ cv2.setTrackbarPos('VMax', 'image', 255)
 hMin = sMin = vMin = hMax = sMax = vMax = 0
 phMin = psMin = pvMin = phMax = psMax = pvMax = 0
 
-img = cv2.imread(r"C:\Users\hasan\Desktop\leaves-segmentation\method-2\test4.png")
+img = cv2.imread(r"C:\Users\hasan\Desktop\leaves-segmentation\watershed-method\test2.png")
 output = img
 waitTime = 33
 
