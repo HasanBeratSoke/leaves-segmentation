@@ -3,13 +3,13 @@
 
 Üst üste binen neslerin segmentasyonu için 3 özel adımdan oluşur;
 
-1 - seed region/point extraction
-2 - contour evidence extraction
-3 - contour estimation
+1. seed region/point extraction
+2. contour evidence extraction
+3. contour estimation
 
 
 <p align="center">
-  <img src="https://github.com/HasanBeratSoke/leaves-segmentation/point-extraction/roadmap.jpg" />
+  <img src="https://github.com/HasanBeratSoke/leaves-segmentation/blob/main/point-extraction/roadmap.jpg" width="500" height="200"/>
 </p>
 
 
