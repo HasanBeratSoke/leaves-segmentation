@@ -4,8 +4,19 @@ import numpy as np
 from random import randint  # for random values
 import copy  # for deepcopy on images
 
-IMG_PATH = r"C:\Users\hasan\Desktop\leaves-segmentation\watershed-method\test2.png"
+IMG_PATH = r"C:\Users\hasan\Desktop\leaves-segmentation\watershed-method\test6.JPG"
 img = cv.imread(IMG_PATH)
+
+
+scale_percent = 50 # percent of original size
+width = int(img.shape[1] * scale_percent / 100)
+height = int(img.shape[0] * scale_percent / 100)
+dim = (width, height)
+  
+# resize image
+img = cv.resize(img, dim, interpolation = cv.INTER_AREA)
+ 
+
 cv.imshow("org", img)
 
 # Backgraund subtraction > 1- MOG  2- KNN 
@@ -13,7 +24,7 @@ cv.imshow("org", img)
 
 
 #blur image
-blur = cv.GaussianBlur(src= img, ksize=(7,7), borderType=cv.BORDER_DEFAULT,  sigmaX= 1.5, sigmaY=1.5)
+blur = cv.GaussianBlur(src= img, ksize=(5,5), borderType=cv.BORDER_DEFAULT,  sigmaX= 1.5, sigmaY=1.5)
 #cv.imshow("5-blur", blur)
 
 """ #smooth image
@@ -24,15 +35,17 @@ smooth = cv.filter2D(blur, -1, kernel )
 hsv_img = cv.cvtColor(img, cv.COLOR_BGR2HSV)
 
 # hsv filtering
-high_value = (30,110,125)
-low_value = (179, 255, 255)
+""" high_value = (30,110,125)
+low_value = (179, 255, 255) """
+high_value = (0,0,0)
+low_value = (160, 255, 150)
 image_threshold = cv.inRange(hsv_img, high_value, low_value )
 cv.imshow("image_threshold-hsv",image_threshold)
 
 #opening and dilate image
 kernel  = np.ones((3,3), np.uint8)
-opening = cv.morphologyEx(image_threshold, cv.MORPH_OPEN, kernel ,iterations= 4)
-sure_bg = cv.dilate(opening, kernel, iterations=5)
+opening = cv.morphologyEx(image_threshold, cv.MORPH_OPEN, kernel ,iterations= 12)
+sure_bg = cv.dilate(opening, kernel, iterations=20)
 cv.imshow("backgraund", sure_bg)
 
 # Finding sure foreground area
