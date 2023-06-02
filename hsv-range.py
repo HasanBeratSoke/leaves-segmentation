@@ -25,7 +25,7 @@ cv2.setTrackbarPos('VMax', 'image', 255)
 hMin = sMin = vMin = hMax = sMax = vMax = 0
 phMin = psMin = pvMin = phMax = psMax = pvMax = 0
 
-img = cv2.imread(r"C:\Users\hasan\Desktop\leaves-segmentation\watershed-method\test7.jpg")
+img = cv2.imread(r"C:\Users\hasan\Desktop\leaves-segmentation\watershed-method\test6.JPG")
 scale_percent = 60 # percent of original size
 width = int(img.shape[1] * scale_percent / 100)
 height = int(img.shape[0] * scale_percent / 100)
